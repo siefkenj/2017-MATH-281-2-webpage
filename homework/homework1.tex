@@ -1,0 +1,146 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} ({\small \it \today})}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\renewcommand{\d}{\mathrm{d}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 281-2}{Homework 1}{Due Thursday, January 14}{}{}{}
+	\begin{enumerate}
+		\item Remember tangent planes and linear approximations?  Given a function $f(x,y)$, 
+			we approximated it at the point $\vec p$ as $f(\vec p+\vec x)\approx L(\vec x) + f(\vec p)$,
+			where $L$ was a \emph{linear function}.  To be more precise, $L(x_1,\ldots, x_n)=\sum \alpha_ix_i$
+			for some choice of $\alpha_i$, and that choice of $\alpha_i$ happens to be the directional derivative
+			of $f$ in the $\hat x,\hat y,$ etc\mbox{.} directions.
+			\begin{enumerate}
+				\item Let $f(x) = x^3$.  Find a linear approximation to $f$ at $x=2$.
+					That is, find a linear function $L$ so that $f(2+x)\approx L(x) + f(2)$.
+				\item Let $f(x,y) = -yx^2$.  Find a linear approximation to $f$ at $(x,y)=(2,3)$.
+					That is, find a linear function $L$ so that $f((2,3)+(x,y))\approx L(x,y) + f(2,3)$.
+				\item Let $f(x,y,z) = -yx^2+z^3$.  Find a linear approximation to $f$ at $(x,y,z)=(2,3,1)$.
+				\item Now let's do something we've never done before.  Consider the vector field
+					\[
+						\vec f(x,y,z) = \mat{xy\\-z^2\\zx}=\mat{p(x,y,z)\\q(x,y,z)\\r(x,y,z)}.
+					\]
+				We'd like to find a linear approximation of $\vec f$ at the point $(x,y,z)=(2,3,1)$.
+				The easiest way to do this is to find linear approximations for $p,q,$ and $r$, and 
+				stick them in as the components of our linear approximation of $f$.  I'd like your answer
+				to look like $\vec f((2,3,1)+(x,y,z)) = \vec L(x,y,z) + \vec f(2,3,1)$ where each component
+				of $\vec L$ is a linear function.
+				\item If a vector field is given by a linear function $\vec L$, must the curl of $\vec L$
+					be zero?  Prove or give a counter example.
+			\end{enumerate}
+		\item In the definition of curl, we found the circulation around a rectangle and shrunk that rectangle
+			to zero.  What happens if we tried another shape, like a circle?  Let's test this in the simple
+			case of finding $\text{curl}_{\hat z}(\vec f)$ where $\vec f$ is linear.
+
+			For this problem, we will assume
+			\[
+				\vec f(x,y,z) = \mat{A_x(x,y,z)\\B_y(x,y,z)\\D_z(x,y,z)} = \mat{\alpha_xx+\alpha_yy+\alpha_zz\\
+				\beta_xx+\beta_yy+\beta_zz\\\delta_xx+\delta_yy+\delta_zz}
+			\]
+			\begin{enumerate}
+				\item Find $\partial/\partial x$, $\partial/\partial y$, and $\partial/\partial z$ of $\vec f$.
+				\item Parameterize $C$, a counter-clockwise oriented circle with radius $r$, centered at the origin 
+					and lying in the $xy$-plane.
+				\item Set up and evaluate an integral for the circulation of $\vec f$ around $C$.
+				\item Evaluate $\displaystyle\lim_{r\to 0} \frac{\text{circulation around $C$}}{\text{area of $C$}}$.  Is
+					this the same as the definition of curl using a rectangle?  Explain.
+			\end{enumerate}
+
+		\item Let $\vec f(x,y,z) = (-y,zx,x+z)$.
+			\begin{enumerate}
+				\item Find the curl of $\vec f$.
+				\item Imagine $\vec f$ represents the force of the wind at
+					every point in space.  If you place a tiny ball at $\vec a=(1,2,3)$,  
+					will it start spinning?  What will be its axis of rotation?
+				\item Let $H$ be the upper half of a sphere of radius $2$ centered
+					at the origin (i.e., the part of the sphere with positive $z$ component). 
+					Compute the circulation around $\partial H$ and the flux of $\nabla \times \vec f$
+					through $H$.  How do they compare?
+			\end{enumerate}
+		\item Plot each of the following vector fields (your picture can be 2d).  
+			From your picture, estimate divergence and curl, then compute
+			the divergence and curl.
+			\begin{enumerate}
+				\item $\vec F(x,y,z) = (-y,x,0)$
+				\item $\vec G(x,y,z) = (x,2y,0)$
+				\item $\vec H(x,y,z) = (x,-y,0)$
+				\item $\vec J(x,y,z) = (\frac{-y}{x^2+y^2}, \frac{x}{x^2+y^2}, 0)$
+				\item A vector field is called \emph{closed} if it has zero curl.  The Poincar\'e
+					lemma states that: \emph{If a vector field $\vec A:\R^3\to\R^3$ is closed
+					on the interior of a sphere $\mathcal S$, then $\vec A$ is conservative 
+					on the interior of $\mathcal S$.}  For each vector field above, explain 
+					what the Poincar\'e lemma says about the existence of a potential function.
+					If a global potential function exists (that is, there is some $f$
+					so that $\nabla f = \vec A$ everywhere), write it down.  
+					
+					If only a local potential function exists at the point $\vec x$, find a
+					sphere $\mathcal S_{\vec x}$ and a 
+					potential $f_{\vec x}$ so that $\nabla f_{\vec x} = \vec A$ when restricted to the interior
+					of $\mathcal S_{\vec x}$.  For simplicity, you may assume $\mathcal S_{\vec x}$ is centered at $\vec x$
+					and just give its radius.
+					
+					Hint: pay special attention to where each vector field is defined and 
+					where your potential function(s) are defined, and look at the previous homework set for if you need extra
+					inspiration.
+
+			\end{enumerate}
+
+		\item Do one of the following:
+			\begin{enumerate}
+				\item type this homework assignment, or
+				\item create a \LaTeX\ document that contains the sentence, ``Hi, my name is \emph{your name},
+					and my favorite equation is $y=x^2+\frac{\alpha}{2}$,'' and turn in a printout
+					with your homework. You are free to substitute your
+					actual favorite equation in for $y=x^2+\frac{\alpha}{2}$.
+			\end{enumerate}
+
+	\end{enumerate}
+
+\end{document}
