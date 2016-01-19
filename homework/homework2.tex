@@ -1,0 +1,158 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} ({\small \it \today})}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\renewcommand{\d}{\mathrm{d}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 281-2}{Homework 2}{Due Thursday, January 28}{}{}{}
+	\begin{enumerate}
+		\item For each situation, set up a differential equation.  Explain what each function
+			in your equation represents and explicitly specify what
+			symbols represent constants.
+		\begin{enumerate}
+			\item Newton's law of cooling states that the change of temperature of an
+				object is proportional to the difference between its temperature and
+				the ambient temperature.  Model temperature with respect to time.
+			\item Your pickle plant has a brine making machine.  Water with a salinity of
+				10\% flows into a 100 liter tank at a rate of 0.2 liters/second.  The incoming
+				liquid mixes fully in the tank and then the mixed liquid flows out at 
+				0.2 liters/second.  Model the salinity with respect to time.
+			\item An object is falling.  The second derivative with respect to time
+				is proportional to (gravity $-F_R$) where $F_R$ is the force of air
+				resistance.  Air resistance is proportional to the product of
+				surface area and velocity.  Model velocity with respect to time.
+			\item The logistic model of population growth states that the growth in population
+				is proportional to the product of the population and the remaining resources.
+				Further, resources decrease linearly with population.
+				Model population with respect to time.
+			\item Fibonacci's model for bunny populations stated that the growth of the population
+				is equal to the number of adult bunnies.  Assuming it takes the
+				bunnies 1 year to mature and that they never die, 
+				model the population of bunnies with respect to time.
+		\end{enumerate}
+		\item A first order differential equation is called \emph{separable} if
+			it can be written in the form $f(y)\frac{\d y}{\d x}= h(x)$.  Separable
+			equations are easy to implicitly solve. By integrating both sides, we have
+			$
+				\int f(y)\frac{\d y}{\d x}\d x= \int h(x)\d x.
+			$ Applying the chain rule to the left hand side gives us
+			\[
+				\int f(y)\d y = \int h(x)\d x.
+			\]
+
+			For each differential equation, state whether or not it is separable.
+			If it is separable, find the set of implicit solutions.
+			Further, find explicit solutions (i.e., solutions
+			where $y$ is a function of $x$) to the initial value problem $y(x_0)=y_0$
+			for every applicable $(x_0,y_0)$.  (For example, if the implicit
+			solution were $x^2+y^2=K$, then the solution would be $y=\sqrt{(x_0^2+y_0^2)-x^2}$
+			if $y_0> 0$ and $y=-\sqrt{(x_0^2+y_0^2)-x^2}$ if $y_0<0$.  If you encounter
+			a similar situation, you must include both such solutions and describe which initial
+			conditions give rise to which solution.)
+			\begin{enumerate}
+				\item $y' = \frac{1-2y}{x}$
+				\item $y'=\frac{-xy}{x+1}$
+				\item $y' = 3\sqrt[3]{y^2}$
+				\item $xy'+y=y^2$
+			\end{enumerate}
+
+
+		\item Consider the differential equation $y'=Ky-y^3$ where $K$ is constant.
+		\begin{enumerate}
+			\item Draw a slope field for the differential equation for your choice of $K$.  Make sure it's
+				detailed enough for you to see what's going on.
+			\item Partition the set of initial conditions $(x_0,y_0)$ into sets that
+				give rise to ``similar looking'' solutions and describe the types
+				of solutions you get from each set.  Warning: your partitions may depend on $K$!
+			\item Let $\vec x_0=(x_0,y_0)$ and $\vec x_0^*=(x_0^*,y_0^*)$ with $\|\vec x_0-\vec x_0^*\|<\varepsilon$.
+				Let $y(x)$ and $y^*(x)$ be solutions to the respective initial value problems.
+				The initial condition $\vec x_0$ is called \emph{bi-stable} if $|y(x)-y^*(x)|<C\varepsilon$
+				for some fixed $C$.  Otherwise it is called \emph{unstable}.  
+				It is called \emph{forward stable} if $|y(x)-y^*(x)|<C\varepsilon$ when $x\geq x_0$
+				and \emph{backwards stable} if $|y(x)-y^*(x)|<C\varepsilon$ when $x\leq x_0$ (so stable implies
+				both forward and backwards stable).
+
+				Identify each region of of initial conditions as forward/backward/bi stable or unstable.
+			\item  For $K=2$, use Euler's method with 5 steps
+				to estimate $y(5)$ where $y$ is a solution
+				to the initial value problem $(0,1)$. Plot your estimate.  
+				What is going on?
+			\item Repeat your calculation for $K=2$ using Euler's method with 50 steps.
+				(You can use a computer for the 50 steps.)
+
+			\item Use Euler's method and this differential equation (with an appropriate value for $K$) to approximate
+				$\sqrt{7}$.
+		\end{enumerate}
+
+		\item Consider the system of differential equations
+			\[
+				\frac{\d x}{\d t} = -y\qquad
+				\frac{\d y}{\d t} = x
+			\]
+			and the initial values $x(0)=1$ and $y(0)=0$.
+		\begin{enumerate}
+			\item Show that $(x,y) = (\cos t, \sin t)$ is a solution to this initial value problem.
+			\item Euler's method would suggest you approximate a solution to this differential equation
+				iteratively with the formulas 
+				\[
+					x_n=x_{n-1}-y_{n-1}\Delta t\qquad\text{and}\qquad
+					y_n = y_{n-1}+x_{n-1}\Delta t.
+				\]
+				What happens when you do so?  Do you get a closed curve?
+			\item Use the modified Euler's method
+				\[
+					x_n=x_{n-1}-y_{n-1}\Delta t\qquad\text{and}\qquad
+					y_n = y_{n-1}+x_{n}\Delta t.
+				\]
+				What happens now?  Explain.
+		\end{enumerate}
+
+	\end{enumerate}
+
+\end{document}
