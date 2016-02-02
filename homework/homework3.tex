@@ -1,0 +1,139 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} ({\small \it \today})}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\renewcommand{\d}{\mathrm{d}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 281-2}{Homework 3}{Due Thursday, February 11}{}{}{}
+	\begin{enumerate}
+		\item Find all solutions to the following linear differential equations.
+		\begin{enumerate}
+			\item $y''-4y'+4y=0$
+			\item $y''+4y=0$
+			\item $y''-y=t^2$
+			\item $y'''+4y''-5y'=0$
+		\end{enumerate}
+
+		\item Consider the differential equation
+			\begin{equation}
+				\label{EQ}
+				y''-4y'+4y=0.
+			\end{equation}
+		\begin{enumerate}
+			\item Find all values $k$ so that this equation solution of the form $e^{kt}$.
+			\item Can you express all solutions to equation \eqref{EQ} in the form $Ae^{k_1t}+Be^{k_2t}$ for
+				some fixed constants $k_1$ and $k_2$?  Why or why not?
+			\item Find a $k$ such that $te^{kt}$ is a solution to equation \eqref{EQ}.
+			\item Can you express all solutions to equation \eqref{EQ} in the form $Ae^{k_1t}+Bte^{k_2t}$ for
+				some $k_1$ and $k_2$?  Explain.
+			\item Can you express all solutions to equation \eqref{EQ} in the form $A(1+t)e^{k_1t}+B(1-t)e^{k_2t}$ for
+				some $k_1$ and $k_2$?  Explain.
+		\end{enumerate}
+
+	\item The characteristic polynomial of a linear homogeneous differential equation $F(y)=0$ is
+		the polynomial $p(k)$ so that $F(e^{kt})=p(k)e^{kt}$.  (Recall here that $F$ a linear
+		function.  For example, maybe $F(y) = y''-2y$.)
+		\begin{enumerate}
+			\item For each linear differential equations from part 1, write the characteristic polynomial  (if it isn't
+				homogeneous, consider the corresponding homogeneous equation).
+			\item Consider a second-order linear homogeneous ODE with 
+				characteristic polynomial $p(k)$ having roots $\alpha$ and $\beta$.  Write the equation for
+				this ODE.
+			\item Consider a second-order linear homogeneous ODE with 
+				characteristic polynomial $p(k)$.
+				Suppose that $p(k)$ is two roots $\alpha,\beta $ with $\alpha\neq \beta$.
+				Show that $Ae^{\alpha t}+Be^{\beta t}$ is always a solution.  Further, show that
+				all solutions to this differential equation can be written in this way.
+				
+			\item Consider a second-order linear homogeneous ODE with 
+				characteristic polynomial $p(k)$ having one repeated root $\alpha$.  
+				Show that $Ae^{\alpha t}+Bte^{\alpha t}$ is always a solution.  Further, show that
+				all solutions to this differential equation can be written in this way.
+			\item Consider a second-order linear homogeneous ODE with 
+				characteristic polynomial $p(k)$ having two distinct roots $\alpha,\beta$.  
+				Show that there is no $\gamma$ such that $te^{\gamma t}$ is a solution.
+			\item Consider a third-order linear homogeneous ODE with 
+				characteristic polynomial $p(k)=(k-2)^3$.  
+				Write the equation for this ODE.  Then, find all solutions.
+		\end{enumerate}
+	\item Consider $y''+y=0$.
+		\begin{enumerate}
+			\item Show that for any initial value problem, you can find $A,B\in \C$ so that
+				\[
+					Ae^{i\theta}+Be^{-i\theta}
+				\]
+				is a solution.  Could you solve any IVP if you restrict $A,B\in\R$?
+			\item Use part (a) along with Euler's formula and the fact that $\sin$ and $\cos$ are solutions
+				to this differential equation to come up with a formula for $\sin$ and $\cos$ as a linear
+				combination of complex exponentials.
+			\item Show that $A\cos \theta+B\sin\theta$ also solves every initial value problem.
+			\item Can you get any additional solutions by considering $A\cos \theta+B\sin\theta +Ae^{i\theta}+Be^{-i\theta}$?
+				Explain.
+			\item Use your formula from part (b) to find $\arccos$ and $\arcsin$ in terms of complex numbers and complex
+				logarithms.  (Hint: $e^{2t}=(e^t)^2$ and $e^te^{-t}=1$).
+		\end{enumerate}
+	\item The matrices are coming!  Read about \emph{matrix multiplication} in the source of your choice (the Evans
+		text talks about it) and how to compute $2\times 2$ and $3\times 3$ determinants.
+		\begin{enumerate}
+			\item Compute $\mat{1&2\\3&4\\5&6}\mat{1&1&1\\1&-1&1}$, $\det\left(\mat{1&1\\2&2}\right)$,
+				and $\mat{1&1&1\\1&-1&-1\\-1&-1&1}^2$.
+			\item Let $\vec a=(1,2,3)$ and $\vec b=(1,2,2)$.  Find matrices $A$ and $B$
+				so that $\vec a\cdot \vec b$ is equivalent to the matrix product $AB$.
+				What are the dimensions of $A$ and $B$?
+			\item Let $M=\mat{1&2\\1&1}$, and consider the function $F_M:\R^2\to \R^2$ defined by 
+				\[
+					F_M(a,b) = \mat{1&2\\1&1}\mat{a\\ b}.
+				\]
+				Show that $F_M$ is linear.
+		\end{enumerate}
+
+	\end{enumerate}
+
+\end{document}
