@@ -1,0 +1,218 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} ({\small \it \today})}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\renewcommand{\d}{\mathrm{d}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 281-2}{Homework 3}{Due Thursday, February 25}{}{}{}
+	\begin{enumerate}
+		\item Consider the second order linear homogeneous differential equation
+			\begin{equation}
+				\label{EQ}
+				y''+y'-6y=0.
+			\end{equation}
+			\begin{enumerate}
+				\item Write down the corresponding system of first order differential equations
+					in matrix form.  That is, you system should be written as 
+					\begin{equation}
+						\label{EQ2}
+						\mat{a'\\b'}=M\mat{a\\b}
+					\end{equation}
+					for some matrix $M$.
+				\item Find all eigenvalues of $M$.
+				\item An eigenvector for \eqref{EQ} is a solution $\phi$ such that $\phi'=k\phi$ for some $\phi$.
+					Use your knowledge of how to solve \eqref{EQ} to find two eigenvectors for \eqref{EQ}.
+				\item Use your eigenvectors from part (c) to find two eigenvectors
+					for $M$.  That is, find vectors $\vec v$ and $\vec w$ so that $M\vec v= k_1\vec v$ and
+					$M\vec w=k_2\vec w$ for scalars $k_1$ and $k_2$.
+				\item Write down a flow for \eqref{EQ2} that passes through the point $(a,b) = (a_0,b_0)$ at 
+					time $t=0$.
+				\item Show that if $\vec \varphi_1:\R\to\R^2$ and $\vec\varphi_2:\R\to\R^2$ are flows for \eqref{EQ2},
+					then so is any linear combination of $\vec\varphi_1$ and $\vec\varphi_2$.  (You may
+					use facts about the linearity of matrix multiplication that you proved
+					last homework).
+			\end{enumerate}
+		\item Consider the second order linear homogeneous differential equation
+			\begin{equation}
+				\label{EQgen}
+				y''+\alpha y'+\beta y=0
+			\end{equation}
+			where $\alpha$ and $\beta$ are constants.
+			\begin{enumerate}
+				\item Write the corresponding system of first order linear differential equations in
+					matrix form.
+				\item Classify the $\alpha,\beta$ that give rise to sources, sinks, spiral sources,
+					spiral sinks, saddles, and swirls.  Are there any $\alpha,\beta\in\R$ that don't
+					fit into this classification?
+				\item Classify the $\alpha,\beta$ that give rise to forward-stable, backward-stable,
+					bi-stable, and unstable solutions to \eqref{EQgen}.
+			\end{enumerate}
+
+		\item The motion of a simple pendulum is governed by the equation
+			\[
+				\theta'' + \frac{g}{\ell}\sin\theta=0
+			\]
+			where $g$ is the acceleration due to gravity, $\ell$ is the length of
+			the rigid pendulum arm, and $\theta$ is the angular displacement from vertical.  Since
+			we're doing math in this course, we may assume $g=\ell=1$.
+			\begin{enumerate}
+				\item Write a system of first-order differential equations corresponding
+					to the equation for a pendulum and draw a phase portrait for this system.
+				\item Analyze the critical points for the pendulum system (by
+					linearizing the system near the critical points).  Does their stability
+					or instability make physical sense?  Explain.
+				\item There are three fundamental behaviors for a simple pendulum: stationary,
+					swinging back and forth, and spinning all the way around.  Draw, and clearly
+					label, a flow corresponding to each behavior on your phase portrait.
+				\item Given an initial condition $(t,\theta,\theta')=(0,\theta_0,0)$, if $\theta_0$ is
+					small, a pendulum's motion is modeled well by simple harmonic oscillation (i.e.,
+					a $\theta=k\cos(\omega t)$ for some $k,\omega$).  We're going to see exactly how well.
+
+					Let $(a',b')=\vec F(a,b)$ be the system of ODEs corresponding to a simple
+					pendulum, and let $(a',b')=\vec L(a,b)$ be the linearization of $\vec F$ around
+					the critical point $(0,0)$.					
+					Let $\vec\varphi_{\theta_0}$ be the
+					flow along $\vec F$ with initial conditions
+					$(t,\theta,\theta')=(0,\theta_0,0)$ and let $\vec\gamma_{\theta_0}$ be 
+					the flow long $\vec L$ with initial conditions
+					$(t,\theta,\theta')=(0,\theta_0,0)$.  Use numerical techniques to
+					estimate the period of $\vec\varphi_{\theta_0}$ and $\vec\gamma_{\theta_0}$ 
+					for at least three choices of $\theta_0$.  Give a range of $\theta_0$
+					where the relative error between the period of $\vec\varphi_{\theta_0}$ and $\vec\gamma_{\theta_0}$
+					is less than 5\%.  (Recall, relative error between quantities $a$ and $b$ is $|(a-b)/a|$.)
+
+			\end{enumerate}
+
+		\item Consider the vector field $\vec F(x,y) = (x+y^2,-y)$.
+			\begin{enumerate}
+				\item For each of the following functions, show whether or
+					not it is a flow for $\vec F$.
+					\begin{enumerate}
+						\item $\vec \varphi(t) = (-e^{-2t},\sqrt{3}e^{-t})$
+						\item $\vec \varphi(t) = (-e^{-4t},\sqrt{3}e^{-2t})$
+						\item $\vec \varphi(t) = (\frac{4}{3}e^t-\frac{1}{3}e^{-2t},e^{-t})$
+						\item $\vec \varphi(t) = (e^t-e^{-2t},e^{-t})$
+					\end{enumerate}
+				\item A \emph{constant flow} is a flow $\vec\varphi$ such that $\vec\varphi(t_1)=\vec \varphi(t_2)$ for
+					all $t_1,t_2\in \R$.  Find all constant flows for $\vec F$. (Hint, think about $\vec\varphi\,'$ in
+					this situation.)
+				\item Classify all critical points of the system of differential equations given by
+					$(a'(t),b'(t)) = \vec F(a(t),b(t))$.
+				\item Find \emph{all} flows of $\vec F$ that pass through the point $(1,0)$.  Remember,
+					if $\vec\varphi$ is a flow with this property, it is not a requirement that $\vec\varphi(0)=(1,0)$,
+					only that $\vec \varphi(t_0)=(1,0)$ for some $t_0$.
+				\item We call the flows $\vec\varphi_1$
+					and $\vec \varphi_2$ time shifts of each other if $\vec \varphi_1(t)=\vec \varphi_2(t+t_0)$ for
+					some $t_0$. Show that the flows from part (d) are time shifts of each other.  
+			\end{enumerate}
+		\item {\sc I hope we haven't forgotten about vector calculus}!
+			Consider the vector field $\vec F:\R^2\to\R^2$ and imagine it describes the velocity
+			of some fluid spread out on a plane (maybe we'll call this whole setup a laminar flow).
+
+			Let $\vec\varphi_{\vec x}$ be the flow along $\vec F$ with initial conditions
+			$\vec\varphi_{\vec x}(0)=\vec x$.  That is, $\vec\varphi_{\vec x}(t)$ 
+			describes the position of a particle that starts at $\vec x$ at time zero
+			and flows for $t$ seconds.
+
+			Viewing $\vec\varphi_{\vec x}$ as a function of $\vec x$, we can view $\vec\varphi_{\vec x}(t)$
+			as inducing a different coordinate change for each $t$.  Specifically, for a fixed $t_0$,
+			we could think of the coordinate change 
+			\[
+				\vec x\mapsto \vec \varphi_{\vec x}(t_0).
+			\]
+			Let $c_{t_0}:\R^2\to\R^2$ be this coordinate change.
+
+			Our goal will be to compute the volume form for this coordinate change and learn some fluid mechanics
+			along the way!
+			\begin{enumerate}
+				\item Suppose the volume form for the change of coordinates induced by $c_t$ was $V_t(x,y)=3^{t}$.
+					If you released a drop of die into the laminar flow governed by $\vec F$ and
+					at time $0$ it had area $4$, what would the area be after 1 second?
+				\item We can compute the volume form by estimating the change in volume of a tiny square
+					under the function $c_{t_0}$ and taking the limit as the square gets infinitely
+					tiny (just like we did before).  Let $R_{\varepsilon}^{(a,b)}$ be the square
+					of side lengths $\varepsilon$ and lower left corner at $(a,b)$.  Compute
+					\[
+						V_{t_0}(a,b)=\lim_{\varepsilon\to 0}\frac{\text{area of }c_{t_0}(R_{\varepsilon}^{(a,b)})}{
+						\text{area of }R_{\varepsilon}^{(a,b)}}.
+					\]
+					You may express your answer in terms of partial derivatives.  You may also
+					find it helpful to assume that if $\varepsilon$ is tiny, then
+					$c_{t_0}(R_{\varepsilon}^{(a,b)})$ is a parallelogram.  Further, recall that determinants
+					can be used to compute the area of a parallelogram and that the determinant is
+					a continuous function, and so you may move limits in and out of a determinant.
+				\item The change of coordinates function $c_t$ has some fantastic properties.  Explain
+					why $c_{t_1}\circ c_{t_2} = c_{t_1+t_2}$.  Using this fact, explain why 
+					$V_{t_1+t_2}(x,y)=V_{t_1}(x,y)V_{t_2}(c_{t_1}(x,y))$.
+				\item Write down the limit definition of the derivative of $\displaystyle\frac{\d V_t}{\d t}(x,y)$ at $t=t_0$
+					and at $t=0$.
+					Then, use your knowledge from the previous part to write down an expression for
+					\[
+						\left. \frac{\d V_t}{\d t}(x,y)\right|_{t=t_0}
+					\]
+					in terms of $\left. \frac{\d V_t}{\d t}\right|_{t=0}$.
+				\item Use $\vec F$ to write down a linear approximation to $c_{t}$ when $t$ is very close
+					to zero. Using this approximation, compute $\displaystyle \frac{\d V_t}{\d t}$ at $t=0$
+					and
+					show that
+					\[
+						\left. \frac{\d V_t}{\d t}\right|_{t=0}=\nabla \cdot \vec F.
+					\]
+				\item A flow is called \emph{incompressible} if $\nabla \cdot \vec F=0$.  Explain why.
+					In particular, your explanation should in some way combine knowledge from
+					parts (d) and (e) to draw strong conclusions about the volume form.
+				\item Let $F(x,y) = (x+y^2,-y)$ from the previous problem.
+					If you released a drop of die into the laminar flow governed by $\vec F$ and
+					at time $0$ it had area $4$, what would the area be after 1 second?
+
+			\end{enumerate}
+	\end{enumerate}
+
+\end{document}

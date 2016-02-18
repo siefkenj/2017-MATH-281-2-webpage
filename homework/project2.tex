@@ -1,0 +1,150 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} ({\small \it \today})}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\renewcommand{\d}{\mathrm{d}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 281-2}{Project 2}{Due Friday, February 19}{}{}{}
+
+	{\bf Hunting Inspiration}:\footnote{``Hunting Inspiration'' is a collaboration between Max Brugger and Jason Siefken}
+	\vspace{-.3cm}
+	\begin{quote}
+		Snow collects on the brim of your fur coat and musket 
+		as you stalk your prey through the white woods.  A flash 
+		of orange, a rustling of branches, and then it's
+		gone.
+		You mutter a curse under your breath.  Foxes are scarce this year, 
+		and you'll have to explain to the Dutch East India Trading Company 
+		why you've come up short.  Worse yet, your rival, a
+		trapper who only hunts 
+		rabbits, is having a terrific year.  You shouldn't have teased him so 
+		much when rabbits were down and foxes were up just a few seasons ago.
+
+		If only you could somehow predict which game would be plentiful, you
+		could always bid on the easier contract!  But how?
+
+		Back at camp, amid the crackling of your lonely fire, 
+		the answer comes to you.  Just two months ago
+		you attended a talk by Dr.~\!Lotka on autocatalytic 
+		chemical reactions.  It was quite a spectacle when,
+		after Dr.~\!Lotka had finished talking, a Dr.~\!Volterra stood up
+		and proclaimed
+		that he had applied the same model to predator-prey ecology.  At
+		the time you were rushed and didn't think much about the proclamation, but now the
+		basic assumptions were making more and more sense:
+
+		\begin{enumerate}
+			\item[(a)] In the absence of foxes, the rabbit population grows
+				at a rate proportional to the number of rabbits.
+			\item[(b)] In the absence of rabbits, the fox population declines
+				at a rate proportional to the number of foxes.
+			\item[(c)] The population of rabbits declines at a rate proportional
+				to the product of the rabbit and fox populations.
+			\item[(d)] The population of foxes grows at a rate proportional 
+				to the product of the rabbit and fox populations.
+		\end{enumerate}
+
+		Pop! A hot coal explodes, snapping you out of your pondering state
+		and into one of action.  Grabbing a piece of paper from your limited
+		supplies, you begin to grapple with the consequences of the
+		Lotka--Volterra model.
+	\end{quote}
+
+	Let $R$ and $F$ stand for the rabbit and fox populations, respectively, and
+	let $\alpha$, $\beta$, $\gamma$, and $\delta$ be the constants of proportionality for
+	parts (a)--(d).
+
+	Work through the following before you begin your report.
+
+	\begin{enumerate}
+		\item Write down the Lotka-Volterra system of differential equations.  For
+			each of (a)--(d), explain whether or not the assumption is reasonable.
+		\item When is the fox population increasing or decreasing?  Given $R$ and $F$,
+			could you predict which one is on the rise on which one is on the decline?
+		\item Is there a steady state for the fox population?  Could the fox population
+			remain steady while the rabbit population is changing?
+		\item \label{params}
+			Sketch an $RF$-phase portrait for the Lotka-Volterra system of differential
+			equations with the following constants:
+			\begin{align*}
+				\alpha &= 0.2\text{ rabbits per month per rabbit}\\
+				\beta &= 0.1\text{ foxes per month per fox}\\
+				\gamma &= 0.002\text{ rabbits per month per rabbit-fox}\\
+				\delta &= 0.001\text{ foxes per month per rabbit-fox}
+			\end{align*}
+
+			Hint: you will need to consider rabbit and fox populations of well over
+			100 to see interesting behavior in your phase portrait.
+		\item Does your phase portrait have any singular points?  What do they mean?
+		\item Use technology to graph $R(t)$ and $F(t)$ for some initial conditions.  
+			Do the initial conditions affect the period of the population increase
+			or decrease?  Does this seem reasonable when looking at your phase portrait?
+	\end{enumerate}
+
+
+	For this project, you may work alone or with a partner and turn in one \LaTeX\ 
+	writeup between the two of you.  
+	Your writeup should include the following:
+	\begin{itemize}
+		\item An explanation of the Lotka-Volterra model along with a discussion of
+			whether or not each assumption is reasonable.
+		\item A description of what behavior you expect from which initial conditions.  You may use
+			the parameters specified in question \ref{params}.  Include a phase portrait in
+			your description as well as how to interpret the phase portrait, and make sure to point
+			out any critical points.
+		\item Suppose you wanted to legislate limits on the hunting of rabbits and foxes to ensure the population of either
+			never dipped below a certain level.  Based on the Lotka-Volterra model, propose
+			legislation.  Be specific and comment on whether a flat-out hunting ban
+			would achieve the desired effect.
+	\end{itemize}
+
+
+	Be careful with your simulations.  Euler's method loses accuracy quickly on Lotka-Volterra--based systems.
+
+\end{document}
