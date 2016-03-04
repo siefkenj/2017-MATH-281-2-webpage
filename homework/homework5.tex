@@ -1,0 +1,188 @@
+\documentclass[letter]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+%%%
+% Set up the margins to use a fairly large area of the page
+%%%
+\oddsidemargin=.2in
+\evensidemargin=.2in
+\textwidth=6in
+\topmargin=0in
+\textheight=9.0in
+\parskip=.07in
+\parindent=0in
+\pagestyle{fancy}
+
+%%%
+% Set up the header
+%%%
+\newcommand{\setheader}[6]{
+	\lhead{{\sc #1}\\{\sc #2} ({\small \it \today})}
+	\rhead{
+		{\bf #3} 
+		\ifthenelse{\equal{#4}{}}{}{(#4)}\\
+		{\bf #5} 
+		\ifthenelse{\equal{#6}{}}{}{(#6)}%
+	}
+}
+
+%%%
+% Set up some shortcut commands
+%%%
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Proj}{\mathrm{proj}}
+\newcommand{\Perp}{\mathrm{perp}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\Span}{\mathrm{span}}
+\newcommand{\Null}{\mathrm{null}}
+\newcommand{\Rank}{\mathrm{rank}}
+\newcommand{\mat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\renewcommand{\d}{\mathrm{d}}
+
+%%%
+% This is where the body of the document goes
+%%%
+\begin{document}
+	\setheader{Math 281-2}{Homework 5}{Not for turning in}{}{}{}
+	\begin{enumerate}
+		\item Consider the second order differential equation
+			\[
+				y''+y=0.
+			\]
+			\begin{enumerate}
+				\item Find a power series solution for this differential equation.
+				\item Use your knowledge of what solutions to this differential equation look
+					like to rearrange your power series into some Taylor series 
+					formulas for familiar functions.
+			\end{enumerate}
+		\item So far, we've only done power series solutions center at $0$.  That is,
+			our guess for a power-series solution looks like $y=\sum_{i\geq 0} a_i x^i$.  This
+			often times works, but sometimes it won't give all solutions because at $x=0$ some
+			information is lost.
+			
+			Consider the differential equation
+			\[
+				xy''+y'+xy=0.
+			\]
+			\begin{enumerate}
+				\item Classify this differential equation in terms of linear/autonomous/homogeneous/$n$th order etc.
+				\item What dimension do you expect the space of all solutions to be?  That is, how many free
+					parameters do you expect to have?
+				\item Find a power series solution to this differential equation centered at $0$.  How many
+					parameters do you have in your solution?
+				\item The power series solution centered at $x_0$ is obtained by guessing a solutions of the
+					form $y=\sum_{i\geq 0} a_i(x-x_0)^i$.  Find the power series solution to this 
+					differential equation centered at $x_0=1$.  How many parameters do you have in your solution?
+					Can you explain what happened in the previous part?
+			\end{enumerate}
+		\item We haven't spent a lot of time studying \emph{degenerate} differential equations/systems.  That is,
+			differential equations/systems that have $0$ as an eigenvalue.  Let's fix that.
+			\begin{enumerate}
+				\item Find all solutions to the differential equation
+					\begin{equation}
+						\label{Eqdeg}
+						y''+y'=0.
+					\end{equation}
+					Then, rewrite equation \eqref{Eqdeg} as a system in matrix form and find all flows.
+				\item Consider the system of differential equations given in matrix form by
+					\begin{equation}
+						\label{Eqmatdeg}
+						\mat{a'\\b'} = \mat{2&3\\6&9}\mat{a\\b}.
+					\end{equation}
+					Find the characteristic polynomial for equation \eqref{Eqmatdeg} and all eigenvalues.
+				\item Can the differential equation \eqref{Eqmatdeg} be solved for all initial conditions
+					$\mat{a'(0)\\b'(0)}=\mat{a_0\\b_0}$?  Explain.
+				\item Write down all flows for equation \eqref{Eqmatdeg}.
+			\end{enumerate}
+		\item Use the Laplace transform to solve the following initial value problems.
+			\begin{enumerate}
+				\item $y''-10y'+9y=5t$ and $y(0)=-1$ and $y'(0)=2$.
+				\item $2y''+3y'-2y=te^{-2t}$ and $y(0)=0$ and $y'(0)=-2$.
+				\item $y''+3ty'-6y=2$ and $y(0)=0$ and $y'(0)=0$.
+			\end{enumerate}
+		\item Compute the following convolutions.
+			\begin{enumerate}
+				\item $t^2 * 1$
+				\item $t*e^{-t}$
+				\item $t^2*(t^2-1)$
+				\item $\cos t*\cos t$
+			\end{enumerate}
+		\item Without computing, estimate where the asymptotes are in
+			the analytic continuation of the following Laplace transforms.
+			(In other words, if we did compute the Laplace transform
+			and interpreted it as a formula ignoring the restrictions on 
+			the domain, where would the asymptotes be).
+			\begin{enumerate}
+				\item $\mathscr{L}(e^t+e^{8t}-14e^{-14t})$
+				\item $\mathscr L(1+(x-2)^2)$
+				\item $\mathscr L(\sin^2(t)e^{-\pi t})$
+				\item $\mathscr L(\sin t)$
+				\item Compare your estimate for the asymptotes of $\mathscr L(\sin t)$ with
+					the actual asymptotes of the formula.  Are they where you thought?
+					(Don't forget about complex numbers.)
+
+					Let $F(s) = \mathscr L(\sin t)$.  Explain why it makes sense that 
+					\[
+						\lim_{s\to 0} F(s) \neq \infty.
+					\]
+
+					Explain why 
+					\[
+						\lim_{s\to 0} F(i+s) = \pm\infty.
+					\]
+					You'll find Euler's formula helpful!
+			\end{enumerate}
+		\item We can do some really cool things with the Laplace transform that don't seem related to ODEs.
+			The function 
+			\[
+			f(x) = \begin{cases}\frac{\sin x}{x}&\text{ if }x\neq 0\\1&\text{ if }x=0\end{cases}
+			\]
+			is called the \emph{sinc} function and shows up a lot in science and
+			engineering.  We're going to find
+			\[
+				I = \int_0^\infty f(x)\d x.
+			\]
+			Since the sinc function resembles an alternating harmonic series, it's reasonable to
+			assume that $I$ actually exists, and in fact using the alternating series
+			test, we can prove that $I<\infty$ exists.  But integrating it directly is hard!
+			\begin{enumerate}
+				\item Write out the formula for $F(s)=\mathscr L(f(t))$, and compute 
+					$\frac{\d f}{\d s}$.  Do you see see a Laplace transform
+					that appears on your lookup table anywhere?
+				\item You now have a formula for $\d F/\d s$, so if you find its antiderivative
+					you'll obtain $F+k$ for some constant $k$.  Do so, and find
+					the antiderivative that corresponds to $k=0$.  (Think about what this means.
+					It's not as easy as not ``adding $k$'' when integrating.)  Hint: consider
+					any values of $F(s)$ or any limits of $F(s)$ that you might actually know
+					exactly.
+				\item For what value of $s$ does $F(s)$ coincide with $I$?  Evaluate $F$ at
+					that value to obtain $I$.
+			\end{enumerate}
+
+		\item There are several things that you need to know are associated
+			with differential equations and solutions to ODEs.  Though I won't
+			make you use these things, it is important that you recognize them as
+			associated with differential equations so that you can look them up when
+			you need them.
+
+			Look up in your textbook (or Wikipedia or a source of your choice) the following
+			items and read about them until they are cemented in your mind as associated
+			with differential equations.
+			\begin{enumerate}
+				\item Separation of Variables
+				\item Variation of Parameters
+				\item Bessel Functions
+			\end{enumerate}
+
+	\end{enumerate}
+
+\end{document}
