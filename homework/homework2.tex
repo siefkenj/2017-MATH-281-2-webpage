@@ -50,32 +50,8 @@
 % This is where the body of the document goes
 %%%
 \begin{document}
-	\setheader{Math 281-2}{Homework 2}{Due Thursday, January 28}{}{}{}
+	\setheader{Math 281-2}{Homework 2}{Due Thursday, January 19}{}{}{}
 	\begin{enumerate}
-		\item For each situation, set up a differential equation.  Explain what each function
-			in your equation represents and explicitly specify what
-			symbols represent constants.
-		\begin{enumerate}
-			\item Newton's law of cooling states that the change of temperature of an
-				object is proportional to the difference between its temperature and
-				the ambient temperature.  Model temperature with respect to time.
-			\item Your pickle plant has a brine making machine.  Water with a salinity of
-				10\% flows into a 100 liter tank at a rate of 0.2 liters/second.  The incoming
-				liquid mixes fully in the tank and then the mixed liquid flows out at 
-				0.2 liters/second.  Model the salinity with respect to time.
-			\item An object is falling.  The second derivative with respect to time
-				is proportional to (gravity $-F_R$) where $F_R$ is the force of air
-				resistance.  Air resistance is proportional to the product of
-				surface area and velocity.  Model velocity with respect to time.
-			\item The logistic model of population growth states that the growth in population
-				is proportional to the product of the population and the remaining resources.
-				Further, resources decrease linearly with population.
-				Model population with respect to time.
-			\item Fibonacci's model for bunny populations stated that the growth of the population
-				is equal to the number of adult bunnies.  Assuming it takes the
-				bunnies 1 year to mature and that they never die, 
-				model the population of bunnies with respect to time.
-		\end{enumerate}
 		\item A first order differential equation is called \emph{separable} if
 			it can be written in the form $f(y)\frac{\d y}{\d x}= h(x)$.  Separable
 			equations are easy to implicitly solve. By integrating both sides, we have
@@ -128,29 +104,6 @@
 
 			\item Use Euler's method and this differential equation (with an appropriate value for $K$) to approximate
 				$\sqrt{7}$.
-		\end{enumerate}
-
-		\item Consider the system of differential equations
-			\[
-				\frac{\d x}{\d t} = -y\qquad
-				\frac{\d y}{\d t} = x
-			\]
-			and the initial values $x(0)=1$ and $y(0)=0$.
-		\begin{enumerate}
-			\item Show that $(x,y) = (\cos t, \sin t)$ is a solution to this initial value problem.
-			\item Euler's method would suggest you approximate a solution to this differential equation
-				iteratively with the formulas 
-				\[
-					x_n=x_{n-1}-y_{n-1}\Delta t\qquad\text{and}\qquad
-					y_n = y_{n-1}+x_{n-1}\Delta t.
-				\]
-				What happens when you do so?  Do you get a closed curve?
-			\item Use the modified Euler's method
-				\[
-					x_n=x_{n-1}-y_{n-1}\Delta t\qquad\text{and}\qquad
-					y_n = y_{n-1}+x_{n}\Delta t.
-				\]
-				What happens now?  Explain.
 		\end{enumerate}
 
 	\end{enumerate}
